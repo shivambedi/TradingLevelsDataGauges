@@ -3,35 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TradingLevelsDataGauges Terminal</title>
+    <title>TradingLevelsDataGauges - Market Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Top Navigation Terminal Header Bar -->
+    <!-- Top Navigation Bar -->
     <nav class="navbar">
-        <div class="logo">⚡ <strong>TradingLevelsDataGauges</strong></div>
+        <div class="logo">📈 <strong>TradingLevelsDataGauges</strong></div>
         <ul class="nav-links">
-            <li><a href="#futures-charts">Futures Charts</a></li>
-            <li><a href="#mag7-charts">Mag 7 Charts</a></li>
-            <li><a href="#levels-section">Institutional Levels</a></li>
+            <li><a href="#charts">Live Charts</a></li>
+            <li><a href="#levels">Daily Levels</a></li>
+            <li><a href="#news">Market News</a></li>
+            <li><a href="#research">Research</a></li>
         </ul>
         <button class="theme-btn" id="themeToggle">Toggle Theme</button>
     </nav>
 
-    <!-- Embedded Header Ticker Tape Bar -->
+    <!-- Real-Time Ticker Tape Widget (Powered by TradingView) -->
     <div class="ticker-wrap">
         <div class="tradingview-widget-container">
             <div class="tradingview-widget-container__widget"></div>
             <script type="text/javascript" src="https://tradingview.com" async>
             {
                 "symbols": [
-                    {"proName": "CME_MINI:ES1!", "title": "S&P 500 Futures"},
-                    {"proName": "CME:NQ1!", "title": "Nasdaq Futures"},
-                    {"proName": "COMEX:GC1!", "title": "Gold Futures"},
-                    {"proName": "NYMEX:CL1!", "title": "Crude Oil Futures"},
-                    {"proName": "NASDAQ:NVDA", "title": "NVIDIA"},
-                    {"proName": "NASDAQ:TSLA", "title": "TESLA"}
+                    {"proName": "FOREXCOM:SPXUSD", "title": "S&P 500"},
+                    {"proName": "FOREXCOM:NSXUSD", "title": "Nasdaq 100"},
+                    {"proName": "FX_IDC:EURUSD", "title": "EUR to USD"},
+                    {"proName": "BITSTAMP:BTCUSD", "title": "Bitcoin"},
+                    {"proName": "COMEX:GC1!", "title": "Gold"}
                 ],
                 "showSymbolLogo": true,
                 "colorTheme": "dark",
@@ -45,138 +45,139 @@
 
     <div class="container">
         
-        <!-- Section: Futures Terminal Matrix -->
-        <section id="futures-charts" class="dashboard-card">
-            <h2>Macro Futures Matrix</h2>
-            <p class="section-desc">Streaming institutional index benchmarks, metals, and global energies.</p>
-            <div class="chart-grid">
-                <div class="chart-box">
-                    <h3>E-mini S&P 500 (ES1!)</h3>
-                    <div id="chart_es" class="tv-widget"></div>
-                </div>
-                <div class="chart-box">
-                    <h3>Nasdaq 100 (NQ1!)</h3>
-                    <div id="chart_nq" class="tv-widget"></div>
-                </div>
-                <div class="chart-box">
-                    <h3>Gold Futures (GC1!)</h3>
-                    <div id="chart_gc" class="tv-widget"></div>
-                </div>
-                <div class="chart-box">
-                    <h3>Crude Oil (CL1!)</h3>
-                    <div id="chart_cl" class="tv-widget"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section: Mag 7 Tech Matrix -->
-        <section id="mag7-charts" class="dashboard-card">
-            <h2>Magnificent 7 Tech Monitors</h2>
-            <p class="section-desc">Active real-time tracking for heavy-weight capital mega-caps.</p>
-            <div class="chart-grid">
-                <div class="chart-box">
-                    <h3>NVIDIA Corporation (NVDA)</h3>
-                    <div id="chart_nvda" class="tv-widget"></div>
-                </div>
-                <div class="chart-box">
-                    <h3>Tesla Motors (TSLA)</h3>
-                    <div id="chart_tsla" class="tv-widget"></div>
-                </div>
-                <div class="chart-box">
-                    <h3>Meta Platforms (META)</h3>
-                    <div id="chart_meta" class="tv-widget"></div>
-                </div>
-                <div class="chart-box">
-                    <h3>Apple Inc. (AAPL)</h3>
-                    <div id="chart_aapl" class="tv-widget"></div>
+        <!-- Section: Live Technical Charts -->
+        <section id="charts" class="dashboard-card">
+            <h2>Live Stock Charts</h2>
+            <p class="section-desc">Interactive real-time technical analysis data stream.</p>
+            <div class="chart-container">
+                <!-- TradingView Advanced Chart Widget -->
+                <div class="tradingview-widget-container" style="height:100%;width:100%">
+                    <div id="tradingview_advanced_chart" style="height:calc(100% - 32px);width:100%"></div>
+                    <script type="text/javascript" src="https://tradingview.com"></script>
+                    <script type="text/javascript">
+                    new TradingView.widget({
+                        "width": "100%",
+                        "height": 500,
+                        "symbol": "NASDAQ:AAPL",
+                        "interval": "D",
+                        "timezone": "Etc/UTC",
+                        "theme": "dark",
+                        "style": "1",
+                        "locale": "en",
+                        "enable_publishing": false,
+                        "hide_side_toolbar": false,
+                        "allow_symbol_change": true,
+                        "container_id": "tradingview_advanced_chart"
+                    });
+                    </script>
                 </div>
             </div>
         </section>
 
-        <!-- Section: Dynamic Data Engine Framework -->
-        <section id="levels-section" class="dashboard-card">
-            <h2>Daily Key Volatility Levels</h2>
-            <p class="section-desc">Automated matrix compiling parameters parsed straight from the JSON database stream.</p>
-            <div id="loading-fallback" style="color: var(--text-muted); font-style: italic; margin-bottom: 15px;">Connecting to database file stream...</div>
-            <div class="levels-display-grid" id="levels-target-container"></div>
+        <!-- Section: Daily Stock Levels Data Grid -->
+        <section id="levels" class="dashboard-card">
+            <h2>Daily Stock Levels</h2>
+            <p class="section-desc">Key institutional key pivot, support, and resistance calculations.</p>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Ticker</th>
+                            <th>Pivot Point</th>
+                            <th>Support 1</th>
+                            <th>Support 2</th>
+                            <th>Resistance 1</th>
+                            <th>Resistance 2</th>
+                            <th>Bias</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>SPY</strong></td>
+                            <td>$505.20</td>
+                            <td>$501.10</td>
+                            <td>$498.00</td>
+                            <td>$509.50</td>
+                            <td>$512.30</td>
+                            <td class="bias-bullish">Bullish</td>
+                        </tr>
+                        <tr>
+                            <td><strong>QQQ</strong></td>
+                            <td>$438.50</td>
+                            <td>$434.00</td>
+                            <td>$430.15</td>
+                            <td>$442.90</td>
+                            <td>$446.00</td>
+                            <td class="bias-bearish">Bearish</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AAPL</strong></td>
+                            <td>$172.10</td>
+                            <td>$169.50</td>
+                            <td>$167.00</td>
+                            <td>$175.40</td>
+                            <td>$178.20</td>
+                            <td class="bias-neutral">Neutral</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
+
+        <!-- Grid Layout for News and Research -->
+        <div class="two-column-grid">
+            
+            <!-- Section: Market Moving News Wire -->
+            <section id="news" class="dashboard-card">
+                <h2>Market Moving News</h2>
+                <div class="news-timeline">
+                    <div class="news-item">
+                        <span class="news-time">Just Now</span>
+                        <p><strong>Fed Officials Hint at Rate Options:</strong> Treasury yields react as macro data signals sticky consumer demand.</p>
+                    </div>
+                    <div class="news-item">
+                        <span class="news-time">45m ago</span>
+                        <p><strong>Tech Sector Leads Outperformance:</strong> Semiconductor equities see strong inflows ahead of critical earnings reports.</p>
+                    </div>
+                    <div class="news-item">
+                        <span class="news-time">2h ago</span>
+                        <p><strong>Crude Oil Edges Higher:</strong> Energy markets pricing in structural supply risks amid bottleneck updates.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Premium Market Research -->
+            <section id="research" class="dashboard-card">
+                <h2>Macro Research Notes</h2>
+                <div class="research-list">
+                    <article class="research-item">
+                        <h3>Q3 Institutional Liquidity Report</h3>
+                        <p>An in-depth tracking breakdown showing where large institutional funds are building core block allocations.</p>
+                        <a href="#" class="read-more">Download PDF Analysis →</a>
+                    </article>
+                    <article class="research-item">
+                        <h3>Volatility Index (VIX) Overextension Matrix</h3>
+                        <p>Historical variance modeling mapping risk premium profiles for options setups over historical cycles.</p>
+                        <a href="#" class="read-more">Read Full Brief →</a>
+                    </article>
+                </div>
+            </section>
+        </div>
 
     </div>
 
-    <!-- Script Engines Configuration Framework -->
-    <script type="text/javascript" src="https://tradingview.com"></script>
-    <script type="text/javascript">
-        // Helper block mapping layout components
-        function renderChartWidget(containerId, symbol) {
-            new TradingView.widget({
-                "width": "100%",
-                "height": 320,
-                "symbol": symbol,
-                "interval": "60",
-                "timezone": "America/New_York",
-                "theme": "dark",
-                "style": "1",
-                "locale": "en",
-                "enable_publishing": false,
-                "hide_top_toolbar": true,
-                "hide_legend": true,
-                "save_image": false,
-                "container_id": containerId
-            });
-        }
+    <!-- Theme Control Logic -->
+    <script>
+        const toggleBtn = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
 
-        // Initialize Technical Matrix Nodes
-        renderChartWidget("chart_es", "CME_MINI:ES1!");
-        renderChartWidget("chart_nq", "CME:NQ1!");
-        renderChartWidget("chart_gc", "COMEX:GC1!");
-        renderChartWidget("chart_cl", "NYMEX:CL1!");
-        renderChartWidget("chart_nvda", "NASDAQ:NVDA");
-        renderChartWidget("chart_tsla", "NASDAQ:TSLA");
-        renderChartWidget("chart_meta", "NASDAQ:META");
-        renderChartWidget("chart_aapl", "NASDAQ:AAPL");
-
-        // Dynamic Database JSON Parsing Pipeline
-        fetch('levels.json')
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('loading-fallback').style.display = 'none';
-                const target = document.getElementById('levels-target-container');
-                
-                // Group array elements by Ticker asset categories
-                const groups = {};
-                data.levels.forEach(item => {
-                    if(!groups[item.ticker]) groups[item.ticker] = [];
-                    groups[item.ticker].push(item);
-                });
-
-                // Generate interface nodes seamlessly 
-                for (const ticker in groups) {
-                    const block = document.createElement('div');
-                    block.className = 'ticker-data-card';
-                    
-                    let rowsHtml = '';
-                    groups[ticker].forEach(l => {
-                        rowsHtml += `
-                            <div class="level-row">
-                                <span class="lbl-type">${l.level_type}</span>
-                                <span class="lbl-val">${l.value.toLocaleString(undefined, {minimumFractionDigits: 1})}</span>
-                            </div>`;
-                    });
-
-                    block.innerHTML = `<h4>${ticker}</h4><div class="rows-box">${rowsHtml}</div>`;
-                    target.appendChild(block);
-                }
-            })
-            .catch(err => {
-                document.getElementById('loading-fallback').innerText = "Failed loading real-time data metrics. Verify root settings file structure.";
-                console.error(err);
-            });
-
-        // Interface System Dark/Light Toggle Controller
-        document.getElementById('themeToggle').addEventListener('click', () => {
-            const el = document.documentElement;
-            const targetMode = el.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-            el.setAttribute('data-theme', targetMode);
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            htmlElement.setAttribute('data-theme', newTheme);
+            
+            // Auto reload widgets to apply matching colors if initialized dynamically
+            // Most nested standard scripts adjust elegantly with clear containers
         });
     </script>
 </body>
