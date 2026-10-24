@@ -1,19 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Styled Free Website</title>
-    <!-- This line links your HTML to your CSS file -->
+    <title>My Multi-Feature Portfolio Website</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <!-- Navigation Menu & Theme Switcher -->
+    <nav class="navbar">
+        <div class="logo"><strong>MySite</strong></div>
+        <ul class="nav-links">
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="theme-btn" id="themeToggle">Toggle Theme</button>
+    </nav>
+
     <div class="container">
-        <h1>Welcome to My Styled Website!</h1>
-        <p>This layout is styled using an external CSS sheet hosted directly on GitHub Pages. It is clean, responsive, and ready for your content.</p>
-        <a href="#" class="btn">Get Started</a>
+        
+        <!-- Hero Section -->
+        <header style="text-align: center; margin: 60px 0;">
+            <h1>Welcome to My Dynamic Website</h1>
+            <p>Featuring a working dark mode toggle, fully responsive layouts, CSS grid image galleries, and a contact form alignment.</p>
+        </header>
+
+        <!-- Photo Gallery Section -->
+        <section id="gallery">
+            <h2>Photo Gallery</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://picsum.photos" alt="Placeholder image 1">
+                    <div class="gallery-caption">Project One</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos" alt="Placeholder image 2">
+                    <div class="gallery-caption">Project Two</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos" alt="Placeholder image 3">
+                    <div class="gallery-caption">Project Three</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section id="contact" class="contact-section">
+            <h2>Get In Touch</h2>
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </section>
+
     </div>
 
+    <!-- Theme Toggle JavaScript Logic -->
+    <script>
+        const toggleBtn = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            htmlElement.setAttribute('data-theme', newTheme);
+        });
+    </script>
 </body>
 </html>
