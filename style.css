@@ -1,4 +1,4 @@
-/* Color Palette Variables Setup */
+/* Core Dark Theme Framework Setup */
 :root {
     --bg-color: #0f172a;
     --card-bg: #1e293b;
@@ -6,8 +6,6 @@
     --text-muted: #94a3b8;
     --accent-color: #3b82f6;
     --border-color: #334155;
-    --green-up: #34d399;
-    --red-down: #f87171;
 }
 
 body {
@@ -19,7 +17,7 @@ body {
     color: var(--text-color);
 }
 
-/* Navbar Interface styling */
+/* Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -43,22 +41,9 @@ body {
     font-weight: 500;
 }
 
-.nav-links a:hover {
-    color: var(--text-color);
-}
-
-.theme-btn {
-    background: var(--border-color);
-    color: var(--text-color);
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-/* Container Structure */
+/* Layout Containers */
 .container {
-    max-width: 1300px;
+    max-width: 1400px;
     margin: 30px auto;
     padding: 0 20px;
 }
@@ -72,64 +57,73 @@ body {
 }
 
 .dashboard-card h2 {
-    margin-top: 0;
+    margin: 0 0 8px 0;
     font-size: 1.4rem;
 }
 
 .section-desc {
     color: var(--text-muted);
-    margin-top: -10px;
-    margin-bottom: 20px;
+    margin: 0 0 24px 0;
     font-size: 0.95rem;
 }
 
-/* Grid System for Charts */
+/* Four Blocks Side-by-Side Grid Configuration Rules */
 .chart-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+}
+
+/* Responsive fallback if the window is too small */
+@media (max-width: 1024px) {
+    .chart-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 600px) {
+    .chart-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .chart-box {
     background: var(--bg-color);
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    padding: 12px;
+    padding: 15px;
 }
 
 .chart-box h3 {
-    margin: 0 0 10px 0;
-    font-size: 1rem;
+    margin: 0 0 12px 0;
+    font-size: 0.95rem;
+    font-weight: 600;
 }
 
-/* CRITICAL FIX: Explicit heights prevent widgets from collapsing */
+/* Display Dimension Overrides */
 .tv-widget {
     height: 320px;
     width: 100%;
-    border-radius: 6px;
-    overflow: hidden;
     background: #131722;
+    border-radius: 4px;
 }
 
 .tv-large-wrapper {
     height: 500px;
     width: 100%;
-    border-radius: 8px;
-    overflow: hidden;
     background: #131722;
-    border: 1px solid var(--border-color);
+    border-radius: 6px;
 }
 
 .large-chart-stack {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 24px;
 }
 
 .large-chart-box {
     background: var(--bg-color);
     border: 1px solid var(--border-color);
-    border-radius: 10px;
+    border-radius: 8px;
     padding: 20px;
 }
 
@@ -142,10 +136,9 @@ body {
 
 .badge {
     background-color: var(--accent-color);
-    padding: 4px 10px;
+    padding: 4px 8px;
     border-radius: 4px;
     font-size: 0.75rem;
-    font-family: monospace;
 }
 
 /* Levels Matrix Output Layout */
