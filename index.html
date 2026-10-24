@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TradingLevelsDataGauges Terminal</title>
-        <!-- The ?v=2 query string forces the browser to discard cached CSS -->
-    <link rel="stylesheet" href="style.css?v=2">
-
+    <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 
-     <!-- Navigation Header Bar -->
+    <!-- Sticky Navigation Header Bar -->
     <nav class="navbar">
         <div class="logo">⚡ <strong>TradingLevelsDataGauges</strong></div>
         <ul class="nav-links">
@@ -22,7 +20,6 @@
         </ul>
     </nav>
 
-
     <div class="container">
         
         <!-- Section 1: Macro Futures Matrix (4 Blocks Side-by-Side) -->
@@ -32,19 +29,19 @@
             <div class="chart-grid">
                 <div class="chart-box">
                     <h3>E-mini S&P 500 (ES1!)</h3>
-                    <div id="chart_es" class="tv-widget"></div>
+                    <iframe src="https://tradingview.com" allowfullscreen readonly></iframe>
                 </div>
                 <div class="chart-box">
                     <h3>Nasdaq 100 (NQ1!)</h3>
-                    <div id="chart_nq" class="tv-widget"></div>
+                    <iframe src="https://tradingview.com" allowfullscreen readonly></iframe>
                 </div>
                 <div class="chart-box">
                     <h3>Gold Futures (GC1!)</h3>
-                    <div id="chart_gc" class="tv-widget"></div>
+                    <iframe src="https://tradingview.com" allowfullscreen readonly></iframe>
                 </div>
                 <div class="chart-box">
                     <h3>Crude Oil (CL1!)</h3>
-                    <div id="chart_cl" class="tv-widget"></div>
+                    <iframe src="https://tradingview.com" allowfullscreen readonly></iframe>
                 </div>
             </div>
         </section>
@@ -56,19 +53,19 @@
             <div class="chart-grid">
                 <div class="chart-box">
                     <h3>NVIDIA Corporation (NVDA)</h3>
-                    <div id="chart_nvda" class="tv-widget"></div>
+                    <iframe src="https://tradingview.com" allowfullscreen readonly></iframe>
                 </div>
                 <div class="chart-box">
                     <h3>Tesla Motors (TSLA)</h3>
-                    <div id="chart_tsla" class="tv-widget"></div>
+                    <iframe src="https://tradingview.com" allowfullscreen readonly></iframe>
                 </div>
                 <div class="chart-box">
                     <h3>Meta Platforms (META)</h3>
-                    <div id="chart_meta" class="tv-widget"></div>
+                    <iframe src="https://tradingview.com" allowfullscreen readonly></iframe>
                 </div>
                 <div class="chart-box">
                     <h3>Apple Inc. (AAPL)</h3>
-                    <div id="chart_aapl" class="tv-widget"></div>
+                    <iframe src="https://tradingview.com" allowfullscreen readonly></iframe>
                 </div>
             </div>
         </section>
@@ -81,89 +78,32 @@
             <div class="levels-display-grid" id="levels-target-container"></div>
         </section>
 
-        <!-- Section 4: Intraday Strategy Desks (The requested /ES and /NQ Detailed Charts) -->
+        <!-- Section 4: Intraday Strategy Desks -->
         <section id="intraday-deepdive" class="dashboard-card">
             <h2>Intraday Strategy Desks (/ES & /NQ)</h2>
-            <p class="section-desc">5-Day, 5-Minute timeframe tracking featuring loaded moving averages.</p>
+            <p class="section-desc">5-Day, 5-Minute timeframe tracking featuring institutional trend streams.</p>
             <div class="large-chart-stack">
                 <div class="large-chart-box">
                     <div class="chart-header-row">
                         <h3>E-mini S&P 500 Intraday Structure (/ES)</h3>
-                        <span class="badge">5-MIN | 5-DAY CLUSTER</span>
+                        <span class="badge">5-MIN | Intraday Stream</span>
                     </div>
-                    <div id="deep_dive_es" class="tv-large-wrapper"></div>
+                    <iframe class="large-iframe" src="https://tradingview.com" allowfullscreen readonly></iframe>
                 </div>
                 <div class="large-chart-box">
                     <div class="chart-header-row">
                         <h3>E-mini Nasdaq 100 Intraday Structure (/NQ)</h3>
-                        <span class="badge">5-MIN | 5-DAY CLUSTER</span>
+                        <span class="badge">5-MIN | Intraday Stream</span>
                     </div>
-                    <div id="deep_dive_nq" class="tv-large-wrapper"></div>
+                    <iframe class="large-iframe" src="https://tradingview.com" allowfullscreen readonly></iframe>
                 </div>
             </div>
         </section>
 
     </div>
 
-    <!-- Script Framework Controls -->
-    <script type="text/javascript" src="https://tradingview.com"></script>
+    <!-- Isolated Database Stream Logic Pipeline -->
     <script type="text/javascript">
-        // Standard Widget Initialization
-        function createStandardWidget(containerId, symbol) {
-            new TradingView.widget({
-                "width": "100%",
-                "height": 320,
-                "symbol": symbol,
-                "interval": "60",
-                "timezone": "America/New_York",
-                "theme": "dark",
-                "style": "1",
-                "locale": "en",
-                "enable_publishing": false,
-                "hide_top_toolbar": true,
-                "hide_legend": true,
-                "save_image": false,
-                "container_id": containerId
-            });
-        }
-
-        // Intraday Deep Dive View Custom Indicators Logic Fix
-        function createDeepDiveWidget(containerId, symbol) {
-            new TradingView.widget({
-                "width": "100%",
-                "height": 500,
-                "symbol": symbol,
-                "interval": "5",
-                "range": "5D",
-                "timezone": "America/New_York",
-                "theme": "dark",
-                "style": "1",
-                "locale": "en",
-                "enable_publishing": false,
-                "hide_side_toolbar": false,
-                "container_id": containerId,
-                "studies": [
-                    "MASimple@tv-basicstudies",
-                    "MAExp@tv-basicstudies"
-                ]
-            });
-        }
-
-        // Deploy Overview Nodes
-        createStandardWidget("chart_es", "CME_MINI:ES1!");
-        createStandardWidget("chart_nq", "CME:NQ1!");
-        createStandardWidget("chart_gc", "COMEX:GC1!");
-        createStandardWidget("chart_cl", "NYMEX:CL1!");
-        createStandardWidget("chart_nvda", "NASDAQ:NVDA");
-        createStandardWidget("chart_tsla", "NASDAQ:TSLA");
-        createStandardWidget("chart_meta", "NASDAQ:META");
-        createStandardWidget("chart_aapl", "NASDAQ:AAPL");
-
-        // Deploy Strategic Deep Dive Intraday Framework Panels
-        createDeepDiveWidget("deep_dive_es", "CME_MINI:ES1!");
-        createDeepDiveWidget("deep_dive_nq", "CME:NQ1!");
-
-        // Pull and Populate Dynamic database values dynamically
         fetch('levels.json')
             .then(res => res.json())
             .then(data => {
