@@ -1,73 +1,172 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Multi-Feature Portfolio Website</title>
+    <title>TradingLevelsDataGauges - Market Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Navigation Menu & Theme Switcher -->
+    <!-- Top Navigation Bar -->
     <nav class="navbar">
-        <div class="logo"><strong>MySite</strong></div>
+        <div class="logo">📈 <strong>TradingLevelsDataGauges</strong></div>
         <ul class="nav-links">
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#charts">Live Charts</a></li>
+            <li><a href="#levels">Daily Levels</a></li>
+            <li><a href="#news">Market News</a></li>
+            <li><a href="#research">Research</a></li>
         </ul>
         <button class="theme-btn" id="themeToggle">Toggle Theme</button>
     </nav>
 
+    <!-- Real-Time Ticker Tape Widget (Powered by TradingView) -->
+    <div class="ticker-wrap">
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://tradingview.com" async>
+            {
+                "symbols": [
+                    {"proName": "FOREXCOM:SPXUSD", "title": "S&P 500"},
+                    {"proName": "FOREXCOM:NSXUSD", "title": "Nasdaq 100"},
+                    {"proName": "FX_IDC:EURUSD", "title": "EUR to USD"},
+                    {"proName": "BITSTAMP:BTCUSD", "title": "Bitcoin"},
+                    {"proName": "COMEX:GC1!", "title": "Gold"}
+                ],
+                "showSymbolLogo": true,
+                "colorTheme": "dark",
+                "isTransparent": true,
+                "displayMode": "adaptive",
+                "locale": "en"
+            }
+            </script>
+        </div>
+    </div>
+
     <div class="container">
         
-        <!-- Hero Section -->
-        <header style="text-align: center; margin: 60px 0;">
-            <h1>Welcome to My Dynamic Website</h1>
-            <p>Featuring a working dark mode toggle, fully responsive layouts, CSS grid image galleries, and a contact form alignment.</p>
-        </header>
-
-        <!-- Photo Gallery Section -->
-        <section id="gallery">
-            <h2>Photo Gallery</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="https://picsum.photos" alt="Placeholder image 1">
-                    <div class="gallery-caption">Project One</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://picsum.photos" alt="Placeholder image 2">
-                    <div class="gallery-caption">Project Two</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://picsum.photos" alt="Placeholder image 3">
-                    <div class="gallery-caption">Project Three</div>
+        <!-- Section: Live Technical Charts -->
+        <section id="charts" class="dashboard-card">
+            <h2>Live Stock Charts</h2>
+            <p class="section-desc">Interactive real-time technical analysis data stream.</p>
+            <div class="chart-container">
+                <!-- TradingView Advanced Chart Widget -->
+                <div class="tradingview-widget-container" style="height:100%;width:100%">
+                    <div id="tradingview_advanced_chart" style="height:calc(100% - 32px);width:100%"></div>
+                    <script type="text/javascript" src="https://tradingview.com"></script>
+                    <script type="text/javascript">
+                    new TradingView.widget({
+                        "width": "100%",
+                        "height": 500,
+                        "symbol": "NASDAQ:AAPL",
+                        "interval": "D",
+                        "timezone": "Etc/UTC",
+                        "theme": "dark",
+                        "style": "1",
+                        "locale": "en",
+                        "enable_publishing": false,
+                        "hide_side_toolbar": false,
+                        "allow_symbol_change": true,
+                        "container_id": "tradingview_advanced_chart"
+                    });
+                    </script>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Form Section -->
-        <section id="contact" class="contact-section">
-            <h2>Get In Touch</h2>
-            <form action="#" method="POST">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
+        <!-- Section: Daily Stock Levels Data Grid -->
+        <section id="levels" class="dashboard-card">
+            <h2>Daily Stock Levels</h2>
+            <p class="section-desc">Key institutional key pivot, support, and resistance calculations.</p>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Ticker</th>
+                            <th>Pivot Point</th>
+                            <th>Support 1</th>
+                            <th>Support 2</th>
+                            <th>Resistance 1</th>
+                            <th>Resistance 2</th>
+                            <th>Bias</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>SPY</strong></td>
+                            <td>$505.20</td>
+                            <td>$501.10</td>
+                            <td>$498.00</td>
+                            <td>$509.50</td>
+                            <td>$512.30</td>
+                            <td class="bias-bullish">Bullish</td>
+                        </tr>
+                        <tr>
+                            <td><strong>QQQ</strong></td>
+                            <td>$438.50</td>
+                            <td>$434.00</td>
+                            <td>$430.15</td>
+                            <td>$442.90</td>
+                            <td>$446.00</td>
+                            <td class="bias-bearish">Bearish</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AAPL</strong></td>
+                            <td>$172.10</td>
+                            <td>$169.50</td>
+                            <td>$167.00</td>
+                            <td>$175.40</td>
+                            <td>$178.20</td>
+                            <td class="bias-neutral">Neutral</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
+
+        <!-- Grid Layout for News and Research -->
+        <div class="two-column-grid">
+            
+            <!-- Section: Market Moving News Wire -->
+            <section id="news" class="dashboard-card">
+                <h2>Market Moving News</h2>
+                <div class="news-timeline">
+                    <div class="news-item">
+                        <span class="news-time">Just Now</span>
+                        <p><strong>Fed Officials Hint at Rate Options:</strong> Treasury yields react as macro data signals sticky consumer demand.</p>
+                    </div>
+                    <div class="news-item">
+                        <span class="news-time">45m ago</span>
+                        <p><strong>Tech Sector Leads Outperformance:</strong> Semiconductor equities see strong inflows ahead of critical earnings reports.</p>
+                    </div>
+                    <div class="news-item">
+                        <span class="news-time">2h ago</span>
+                        <p><strong>Crude Oil Edges Higher:</strong> Energy markets pricing in structural supply risks amid bottleneck updates.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Premium Market Research -->
+            <section id="research" class="dashboard-card">
+                <h2>Macro Research Notes</h2>
+                <div class="research-list">
+                    <article class="research-item">
+                        <h3>Q3 Institutional Liquidity Report</h3>
+                        <p>An in-depth tracking breakdown showing where large institutional funds are building core block allocations.</p>
+                        <a href="#" class="read-more">Download PDF Analysis →</a>
+                    </article>
+                    <article class="research-item">
+                        <h3>Volatility Index (VIX) Overextension Matrix</h3>
+                        <p>Historical variance modeling mapping risk premium profiles for options setups over historical cycles.</p>
+                        <a href="#" class="read-more">Read Full Brief →</a>
+                    </article>
+                </div>
+            </section>
+        </div>
 
     </div>
 
-    <!-- Theme Toggle JavaScript Logic -->
+    <!-- Theme Control Logic -->
     <script>
         const toggleBtn = document.getElementById('themeToggle');
         const htmlElement = document.documentElement;
@@ -76,6 +175,9 @@
             const currentTheme = htmlElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
             htmlElement.setAttribute('data-theme', newTheme);
+            
+            // Auto reload widgets to apply matching colors if initialized dynamically
+            // Most nested standard scripts adjust elegantly with clear containers
         });
     </script>
 </body>
