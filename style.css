@@ -200,3 +200,19 @@ body {
     z-index: 1000;
 }
 
+/* Hardcoded Frame Display Framework Rules */
+.chart-box iframe {
+    width: 100%;
+    height: 320px;
+    border: none;
+    border-radius: 4px;
+    background: #131722;
+}
+
+.large-chart-box iframe.large-iframe {
+    width: 100%;
+    height: 520px;
+    border: none;
+    border-radius: 6px;
+    background: #131722;
+}
