@@ -175,3 +175,28 @@ body {
 
 .lbl-type { color: var(--text-muted); }
 .lbl-val { color: var(--text-color); font-weight: bold; }
+
+/* Navigation Home Link Styling Modifiers */
+.nav-links a.nav-home-btn {
+    color: var(--accent-color);
+    font-weight: 600;
+    border-right: 1px solid var(--border-color);
+    padding-right: 15px;
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: opacity 0.2s ease;
+}
+
+.nav-links a.nav-home-btn:hover {
+    opacity: 0.8;
+}
+
+/* Ensure navbar pins cleanly to the top of the browser viewport during scrolls */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
