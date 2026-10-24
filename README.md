@@ -1,1 +1,30 @@
 # TradingLevelsDataGauges
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Levels Data Gauges</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Trading Levels Data Gauges</h1>
+        <p>Real-time market tracking and gauge visualizations.</p>
+    </header>
+    
+    <main>
+        <section id="dashboard">
+            <!-- Your gauges and trading data widgets go here -->
+            <div class="gauge-card">
+                <h3>Market Sentiment Gauge</h3>
+                <p>Loading data...</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
