@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TradingLevelsDataGauges Terminal</title>
-    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 
@@ -29,19 +29,19 @@
             <div class="chart-grid">
                 <div class="chart-box">
                     <h3>E-mini S&P 500 (ES1!)</h3>
-                    <div id="tv_chart_es" class="chart-container-block"></div>
+                    <div id="chart-es" class="chart-container-block"></div>
                 </div>
                 <div class="chart-box">
                     <h3>Nasdaq 100 (NQ1!)</h3>
-                    <div id="tv_chart_nq" class="chart-container-block"></div>
+                    <div id="chart-nq" class="chart-container-block"></div>
                 </div>
                 <div class="chart-box">
                     <h3>Gold Futures (GC1!)</h3>
-                    <div id="tv_chart_gc" class="chart-container-block"></div>
+                    <div id="chart-gc" class="chart-container-block"></div>
                 </div>
                 <div class="chart-box">
                     <h3>Crude Oil (CL1!)</h3>
-                    <div id="tv_chart_cl" class="chart-container-block"></div>
+                    <div id="chart-cl" class="chart-container-block"></div>
                 </div>
             </div>
         </section>
@@ -53,19 +53,19 @@
             <div class="chart-grid">
                 <div class="chart-box">
                     <h3>NVIDIA Corporation (NVDA)</h3>
-                    <div id="tv_chart_nvda" class="chart-container-block"></div>
+                    <div id="chart-nvda" class="chart-container-block"></div>
                 </div>
                 <div class="chart-box">
                     <h3>Tesla Motors (TSLA)</h3>
-                    <div id="tv_chart_tsla" class="chart-container-block"></div>
+                    <div id="chart-tsla" class="chart-container-block"></div>
                 </div>
                 <div class="chart-box">
                     <h3>Meta Platforms (META)</h3>
-                    <div id="tv_chart_meta" class="chart-container-block"></div>
+                    <div id="chart-meta" class="chart-container-block"></div>
                 </div>
                 <div class="chart-box">
                     <h3>Apple Inc. (AAPL)</h3>
-                    <div id="tv_chart_aapl" class="chart-container-block"></div>
+                    <div id="chart-aapl" class="chart-container-block"></div>
                 </div>
             </div>
         </section>
@@ -88,14 +88,14 @@
                         <h3>E-mini S&P 500 Intraday Structure (/ES)</h3>
                         <span class="badge">5-MIN | Intraday Stream</span>
                     </div>
-                    <div id="tv_deep_es" class="chart-container-large"></div>
+                    <div id="deep-es" class="chart-container-large"></div>
                 </div>
                 <div class="large-chart-box">
                     <div class="chart-header-row">
                         <h3>E-mini Nasdaq 100 Intraday Structure (/NQ)</h3>
                         <span class="badge">5-MIN | Intraday Stream</span>
                     </div>
-                    <div id="tv_deep_nq" class="chart-container-large"></div>
+                    <div id="deep-nq" class="chart-container-large"></div>
                 </div>
             </div>
         </section>
@@ -106,11 +106,11 @@
     <script type="text/javascript" src="https://tradingview.com"></script>
     
     <script type="text/javascript">
-        // Helper function for building the standard grid blocks
-        function initTradingViewGridChart(containerId, symbol) {
+        // Helper function for building the standard grid blocks (Hyphens used for element IDs)
+        function initGridChart(containerId, symbol) {
             new TradingView.widget({
                 "width": "100%",
-                "height": 320,
+                "height": "100%",
                 "symbol": symbol,
                 "interval": "60",
                 "timezone": "America/New_York",
@@ -126,10 +126,10 @@
         }
 
         // Helper function for building the large technical intraday charts
-        function initTradingViewDeepDiveChart(containerId, symbol) {
+        function initDeepDiveChart(containerId, symbol) {
             new TradingView.widget({
                 "width": "100%",
-                "height": 500,
+                "height": "100%",
                 "symbol": symbol,
                 "interval": "5",
                 "range": "5D",
@@ -143,23 +143,20 @@
             });
         }
 
-        // Initialize all charts when the window fully loads
-        window.addEventListener('DOMContentLoaded', () => {
-            // Group 1: Futures Grid
-            initTradingViewGridChart("tv_chart_es", "CME_MINI:ES1!");
-            initTradingViewGridChart("tv_chart_nq", "CME:NQ1!");
-            initTradingViewGridChart("tv_chart_gc", "COMEX:GC1!");
-            initTradingViewGridChart("tv_chart_cl", "NYMEX:CL1!");
+        // Deploy charts sequentially once script assets attach safely
+        window.addEventListener('load', () => {
+            initGridChart("chart-es", "CME_MINI:ES1!");
+            initGridChart("chart-nq", "CME:NQ1!");
+            initGridChart("chart-gc", "COMEX:GC1!");
+            initGridChart("chart-cl", "NYMEX:CL1!");
 
-            // Group 2: Tech Grid
-            initTradingViewGridChart("tv_chart_nvda", "NASDAQ:NVDA");
-            initTradingViewGridChart("tv_chart_tsla", "NASDAQ:TSLA");
-            initTradingViewGridChart("tv_chart_meta", "NASDAQ:META");
-            initTradingViewGridChart("tv_chart_aapl", "NASDAQ:AAPL");
+            initGridChart("chart-nvda", "NASDAQ:NVDA");
+            initGridChart("chart-tsla", "NASDAQ:TSLA");
+            initGridChart("chart-meta", "NASDAQ:META");
+            initGridChart("chart-aapl", "NASDAQ:AAPL");
 
-            // Group 3: Deep Dives
-            initTradingViewDeepDiveChart("tv_deep_es", "CME_MINI:ES1!");
-            initTradingViewDeepDiveChart("tv_deep_nq", "CME:NQ1!");
+            initDeepDiveChart("deep-es", "CME_MINI:ES1!");
+            initDeepDiveChart("deep-nq", "CME:NQ1!");
         });
 
         // Parse local levels database file stream
