@@ -1,160 +1,286 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TradingLevelsDataGauges Terminal</title>
-    <link rel="stylesheet" href="style.css?v=9">
-    <script type="text/javascript" src="https://tradingview.com"></script>
+    <title>Trading Levels - Professional Market Analysis</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#070b14',
+                        cardbg: '#0b1329',
+                        bordercol: '#1e293b',
+                        goldaccent: '#f59e0b'
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
+<body class="bg-darkbg text-slate-200 font-sans antialiased min-h-screen flex flex-col justify-between">
 
-    <nav class="navbar">
-        <div class="logo">⚡ <strong>TradingLevelsDataGauges</strong></div>
-        <ul class="nav-links">
-            <li><a href="#" class="nav-home-btn">🏠 Home</a></li>
-            <li><a href="#futures-matrix">Futures Overview</a></li>
-            <li><a href="#mag7-matrix">Mag 7 Tech</a></li>
-            <li><a href="#levels-matrix">Daily Levels</a></li>
-            <li><a href="#intraday-deepdive">Intraday Strategy</a></li>
-        </ul>
-    </nav>
+    <div>
+        <!-- Top Promotional Banner -->
+        <div class="bg-purple-900 text-purple-200 text-xs sm:text-sm text-center py-2 px-4 flex justify-center items-center gap-2">
+            <span>You currently have a free site. Pick a plan to use premium features.</span>
+            <a href="#store" class="underline font-semibold hover:text-white">View Plans &rarr;</a>
+        </div>
 
-    <div class="container">
-        
-        <section id="futures-matrix" class="dashboard-card">
-            <h2>Macro Futures Matrix</h2>
-            <p class="section-desc">Streaming institutional index benchmarks, metals, and global energies.</p>
-            <div class="chart-grid">
-                <div class="chart-box">
-                    <h3>E-mini S&P 500 (ES1!)</h3>
-                    <div id="widget-es" class="chart-container-block"></div>
-                    <script type="text/javascript">
-                        new TradingView.widget({ "width": "100%", "height": 320, "symbol": "CME_MINI:ES1!", "interval": "60", "timezone": "America/New_York", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "hide_top_toolbar": true, "hide_legend": true, "save_image": false, "container_id": "widget-es" });
-                    </script>
+        <!-- Navigation Header -->
+        <header class="border-b border-bordercol bg-darkbg/80 backdrop-blur sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <span class="text-goldaccent font-bold text-lg tracking-wider">⚡ Trading Levels</span>
+                    <span class="text-slate-500">~</span>
+                    <span class="font-semibold tracking-wide">Trading Levels</span>
                 </div>
-                <div class="chart-box">
-                    <h3>Nasdaq 100 (NQ1!)</h3>
-                    <div id="widget-nq" class="chart-container-block"></div>
-                    <script type="text/javascript">
-                        new TradingView.widget({ "width": "100%", "height": 320, "symbol": "CME:NQ1!", "interval": "60", "timezone": "America/New_York", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "hide_top_toolbar": true, "hide_legend": true, "save_image": false, "container_id": "widget-nq" });
-                    </script>
-                </div>
-                <div class="chart-box">
-                    <h3>Gold Futures (GC1!)</h3>
-                    <div id="widget-gc" class="chart-container-block"></div>
-                    <script type="text/javascript">
-                        new TradingView.widget({ "width": "100%", "height": 320, "symbol": "COMEX:GC1!", "interval": "60", "timezone": "America/New_York", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "hide_top_toolbar": true, "hide_legend": true, "save_image": false, "container_id": "widget-gc" });
-                    </script>
-                </div>
-                <div class="chart-box">
-                    <h3>Crude Oil (CL1!)</h3>
-                    <div id="widget-cl" class="chart-container-block"></div>
-                    <script type="text/javascript">
-                        new TradingView.widget({ "width": "100%", "height": 320, "symbol": "NYMEX:CL1!", "interval": "60", "timezone": "America/New_York", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "hide_top_toolbar": true, "hide_legend": true, "save_image": false, "container_id": "widget-cl" });
-                    </script>
+                <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+                    <a href="#" class="text-goldaccent hover:text-goldaccent/80">Dashboard</a>
+                    <a href="#store" class="text-slate-300 hover:text-white">Store</a>
+                    <a href="#about" class="text-slate-300 hover:text-white">About</a>
+                </nav>
+                <div class="flex items-center gap-4">
+                    <a href="#" class="bg-goldaccent text-slate-950 px-4 py-1.5 rounded text-sm font-semibold hover:bg-amber-400 transition">Login</a>
+                    <svg class="w-6 h-6 text-slate-300 cursor-pointer hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                 </div>
             </div>
-        </section>
+        </header>
 
-        <section id="mag7-matrix" class="dashboard-card">
-            <h2>Magnificent 7 Tech Monitors</h2>
-            <p class="section-desc">Active real-time tracking for heavy-weight capital mega-caps.</p>
-            <div class="chart-grid">
-                <div class="chart-box">
-                    <h3>NVIDIA Corporation (NVDA)</h3>
-                    <div id="widget-nvda" class="chart-container-block"></div>
-                    <script type="text/javascript">
-                        new TradingView.widget({ "width": "100%", "height": 320, "symbol": "NASDAQ:NVDA", "interval": "60", "timezone": "America/New_York", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "hide_top_toolbar": true, "hide_legend": true, "save_image": false, "container_id": "widget-nvda" });
-                    </script>
-                </div>
-                <div class="chart-box">
-                    <h3>Tesla Motors (TSLA)</h3>
-                    <div id="widget-tsla" class="chart-container-block"></div>
-                    <script type="text/javascript">
-                        new TradingView.widget({ "width": "100%", "height": 320, "symbol": "NASDAQ:TSLA", "interval": "60", "timezone": "America/New_York", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "hide_top_toolbar": true, "hide_legend": true, "save_image": false, "container_id": "widget-tsla" });
-                    </script>
-                </div>
-                <div class="chart-box">
-                    <h3>Meta Platforms (META)</h3>
-                    <div id="widget-meta" class="chart-container-block"></div>
-                    <script type="text/javascript">
-                        new TradingView.widget({ "width": "100%", "height": 320, "symbol": "NASDAQ:META", "interval": "60", "timezone": "America/New_York", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "hide_top_toolbar": true, "hide_legend": true, "save_image": false, "container_id": "widget-meta" });
-                    </script>
-                </div>
-                <div class="chart-box">
-                    <h3>Apple Inc. (AAPL)</h3>
-                    <div id="widget-aapl" class="chart-container-block"></div>
-                    <script type="text/javascript">
-                        new TradingView.widget({ "width": "100%", "height": 320, "symbol": "NASDAQ:AAPL", "interval": "60", "timezone": "America/New_York", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "hide_top_toolbar": true, "hide_legend": true, "save_image": false, "container_id": "widget-aapl" });
-                    </script>
+        <!-- Main Content Area -->
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
+            
+            <!-- Intro & Market Status -->
+            <div>
+                <p class="text-sm text-slate-400 mb-4">Key levels and live charts for ES, NQ, GC, CL, SPX, SPY, IWM, META, and NVDA. Updated each trading day.</p>
+                <div class="flex items-center gap-2 text-xs font-medium text-emerald-400 bg-emerald-950/40 border border-emerald-900/50 w-fit px-3 py-1 rounded-full">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Markets Open &bull; Updated daily
                 </div>
             </div>
-        </section>
 
-        <section id="levels-matrix" class="dashboard-card">
-            <h2>Daily Key Volatility Levels</h2>
-            <p class="section-desc">Automated matrix compiling parameters parsed straight from the JSON database stream.</p>
-            <div id="loading-fallback" style="color: var(--text-muted); font-style: italic;">Connecting to database file stream...</div>
-            <div class="levels-display-grid" id="levels-target-container"></div>
-        </section>
+            <!-- Ticker Bar -->
+            <div class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-9 gap-2 bg-cardbg p-3 rounded-lg border border-bordercol text-center text-xs">
+                <div><div class="text-slate-500 font-semibold">ES</div><div class="text-slate-400">—</div></div>
+                <div><div class="text-slate-500 font-semibold">NQ</div><div class="text-slate-400">—</div></div>
+                <div><div class="text-slate-500 font-semibold">GC</div><div class="text-slate-400">—</div></div>
+                <div><div class="text-slate-500 font-semibold">CL</div><div class="text-slate-400">—</div></div>
+                <div><div class="text-emerald-400 font-semibold">SPX</div><div class="text-emerald-400">7,623.68</div></div>
+                <div><div class="text-slate-500 font-semibold">SPY</div><div class="text-slate-400">—</div></div>
+                <div><div class="text-slate-500 font-semibold">IWM</div><div class="text-slate-400">—</div></div>
+                <div><div class="text-slate-500 font-semibold">META</div><div class="text-slate-400">—</div></div>
+                <div><div class="text-emerald-400 font-semibold">NVDA</div><div class="text-emerald-400">210.96</div></div>
+            </div>
 
-        <section id="intraday-deepdive" class="dashboard-card">
-            <h2>Intraday Strategy Desks (/ES & /NQ)</h2>
-            <p class="section-desc">5-Day, 5-Minute timeframe tracking featuring institutional trend streams.</p>
-            <div class="large-chart-stack">
-                <div class="large-chart-box">
-                    <div class="chart-header-row">
-                        <h3>E-mini S&P 500 Intraday Structure (/ES)</h3>
-                        <span class="badge">5-MIN | Intraday Stream</span>
+            <!-- Charts & Key Levels Grid -->
+            <section>
+                <h2 class="text-lg font-bold mb-4 flex items-center gap-2">📊 Charts & Key Levels</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Card Example: SPY -->
+                    <div class="bg-cardbg border border-bordercol rounded-xl p-4 flex flex-col justify-between shadow-lg">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <div>
+                                    <span class="text-xs font-bold bg-amber-500/10 text-amber-500 px-2 py-0.5 rounded">SPY</span>
+                                    <h3 class="text-sm font-semibold mt-1">SPDR S&P 500 ETF</h3>
+                                </div>
+                                <span class="text-rose-400 font-mono text-sm">759.97 (-0.52%)</span>
+                            </div>
+                            <div class="h-32 bg-darkbg/50 rounded border border-bordercol/50 flex items-center justify-center text-xs text-slate-500 mb-4">
+                                [ TradingView Mini Chart / Widget ]
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 text-xs font-mono">
+                                <div>
+                                    <div class="text-rose-400 font-bold mb-1">Resistance</div>
+                                    <div class="text-slate-400">—</div>
+                                </div>
+                                <div>
+                                    <div class="text-emerald-400 font-bold mb-1">Support</div>
+                                    <div class="text-slate-400">—</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-bordercol text-[11px] text-slate-500">
+                            Note: Levels pending data update. Check back before market open.
+                        </div>
                     </div>
-                    <div id="widget-deep-es" class="chart-container-large"></div>
-                    <script type="text/javascript">
-                        new TradingView.widget({ "width": "100%", "height": 500, "symbol": "CME_MINI:ES1!", "interval": "5", "range": "5D", "timezone": "America/New_York", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "hide_side_toolbar": false, "container_id": "widget-deep-es" });
-                    </script>
-                </div>
-                <div class="large-chart-box">
-                    <div class="chart-header-row">
-                        <h3>E-mini Nasdaq 100 Intraday Structure (/NQ)</h3>
-                        <span class="badge">5-MIN | Intraday Stream</span>
+
+                    <!-- Repeat similar cards for other tickers (ES, NQ, GC, CL, SPX, IWM, META, NVDA) -->
+                    <div class="bg-cardbg border border-bordercol rounded-xl p-4 flex flex-col justify-between shadow-lg">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <div>
+                                    <span class="text-xs font-bold bg-amber-500/10 text-amber-500 px-2 py-0.5 rounded">NVDA</span>
+                                    <h3 class="text-sm font-semibold mt-1">NVIDIA Corporation</h3>
+                                </div>
+                                <span class="text-rose-400 font-mono text-sm">210.96 (-0.59%)</span>
+                            </div>
+                            <div class="h-32 bg-darkbg/50 rounded border border-bordercol/50 flex items-center justify-center text-xs text-slate-500 mb-4">
+                                [ TradingView Mini Chart / Widget ]
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 text-xs font-mono">
+                                <div>
+                                    <div class="text-rose-400 font-bold mb-1">Resistance</div>
+                                    <div>214.00 &bull; 218.00</div>
+                                </div>
+                                <div>
+                                    <div class="text-emerald-400 font-bold mb-1">Support</div>
+                                    <div>210.00 &bull; 207.00</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-bordercol text-[11px] text-slate-500">
+                            Note: Price at 210.96. Call wall at 215 / Put wall at 210.
+                        </div>
                     </div>
-                    <div id="widget-deep-nq" class="chart-container-large"></div>
-                    <script type="text/javascript">
-                        new TradingView.widget({ "width": "100%", "height": 500, "symbol": "CME:NQ1!", "interval": "5", "range": "5D", "timezone": "America/New_York", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "hide_side_toolbar": false, "container_id": "widget-deep-nq" });
-                    </script>
+
+                    <div class="bg-cardbg border border-bordercol rounded-xl p-4 flex flex-col justify-between shadow-lg">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <div>
+                                    <span class="text-xs font-bold bg-amber-500/10 text-amber-500 px-2 py-0.5 rounded">META</span>
+                                    <h3 class="text-sm font-semibold mt-1">Meta Platforms</h3>
+                                </div>
+                                <span class="text-rose-400 font-mono text-sm">642.62 (-0.96%)</span>
+                            </div>
+                            <div class="h-32 bg-darkbg/50 rounded border border-bordercol/50 flex items-center justify-center text-xs text-slate-500 mb-4">
+                                [ TradingView Mini Chart / Widget ]
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 text-xs font-mono">
+                                <div>
+                                    <div class="text-rose-400 font-bold mb-1">Resistance</div>
+                                    <div>651.00 &bull; 660.00</div>
+                                </div>
+                                <div>
+                                    <div class="text-emerald-400 font-bold mb-1">Support</div>
+                                    <div>630.00 &bull; 625.00</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-bordercol text-[11px] text-slate-500">
+                            Note: Call wall at 650 / Put wall at 630 defines range.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Store Section (Matching Screenshot 2) -->
+            <section id="store" class="py-12 border-t border-bordercol mt-12">
+                <div class="text-center mb-10">
+                    <span class="text-xs uppercase tracking-widest text-amber-500 font-semibold bg-amber-500/10 px-3 py-1 rounded-full">Education Store</span>
+                    <h2 class="text-3xl font-extrabold mt-3">Sharpen Your Edge</h2>
+                    <p class="text-slate-400 text-sm mt-2">Courses, membership tiers, and daily levels built for serious traders.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Product 1 -->
+                    <div class="bg-cardbg border border-bordercol rounded-2xl p-6 flex flex-col justify-between relative shadow-xl">
+                        <span class="absolute -top-3 left-6 bg-amber-500 text-slate-950 font-bold text-xs uppercase px-3 py-1 rounded-full">Bestseller</span>
+                        <div>
+                            <h3 class="text-lg font-bold mt-2">The Trading Blueprint</h3>
+                            <p class="text-xs text-slate-400 mt-2">A comprehensive framework for identifying high-probability trade setups using key support and resistance levels.</p>
+                            <ul class="text-xs space-y-2 text-slate-300 mt-6 border-t border-bordercol pt-4">
+                                <li class="flex items-center gap-2">✓ Full PDF tactical guide</li>
+                                <li class="flex items-center gap-2">✓ Video walkthroughs</li>
+                                <li class="flex items-center gap-2">✓ Live level setup sheet</li>
+                                <li class="flex items-center gap-2">✓ Lifetime updates</li>
+                            </ul>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-bordercol">
+                            <div class="text-2xl font-extrabold text-white mb-4">$197</div>
+                            <div class="flex gap-2">
+                                <button class="w-1/2 border border-slate-600 py-2 rounded text-xs font-semibold hover:bg-slate-800 transition">View Details</button>
+                                <button class="w-1/2 bg-amber-500 text-slate-950 py-2 rounded text-xs font-bold hover:bg-amber-400 transition">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="bg-cardbg border border-bordercol rounded-2xl p-6 flex flex-col justify-between relative shadow-xl">
+                        <span class="absolute -top-3 left-6 bg-blue-600 text-white font-bold text-xs uppercase px-3 py-1 rounded-full">Advanced</span>
+                        <div>
+                            <h3 class="text-lg font-bold mt-2">ES Futures Mastery</h3>
+                            <p class="text-xs text-slate-400 mt-2">Master the E-mini S&P 500 futures market. Learn to read order flow, identify gamma levels, and trade around key daily levels with precision.</p>
+                            <ul class="text-xs space-y-2 text-slate-300 mt-6 border-t border-bordercol pt-4">
+                                <li class="flex items-center gap-2">✓ 30+ module masterclass</li>
+                                <li class="flex items-center gap-2">✓ Order flow documentation</li>
+                                <li class="flex items-center gap-2">✓ Deep dive gamma gex toolkit</li>
+                                <li class="flex items-center gap-2">✓ Lifetime updates</li>
+                            </ul>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-bordercol">
+                            <div class="text-2xl font-extrabold text-white mb-4">$297</div>
+                            <div class="flex gap-2">
+                                <button class="w-1/2 border border-slate-600 py-2 rounded text-xs font-semibold hover:bg-slate-800 transition">View Details</button>
+                                <button class="w-1/2 bg-amber-500 text-slate-950 py-2 rounded text-xs font-bold hover:bg-amber-400 transition">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="bg-cardbg border border-bordercol rounded-2xl p-6 flex flex-col justify-between relative shadow-xl">
+                        <span class="absolute -top-3 left-6 bg-emerald-600 text-white font-bold text-xs uppercase px-3 py-1 rounded-full">Subscription</span>
+                        <div>
+                            <h3 class="text-lg font-bold mt-2">Daily Levels Subscription</h3>
+                            <p class="text-xs text-slate-400 mt-2">Fresh support, resistance, and gamma levels for 9 instruments delivered every trading day before market open.</p>
+                            <ul class="text-xs space-y-2 text-slate-300 mt-6 border-t border-bordercol pt-4">
+                                <li class="flex items-center gap-2">✓ 9 instruments covered daily</li>
+                                <li class="flex items-center gap-2">✓ Pre-market analysis</li>
+                                <li class="flex items-center gap-2">✓ Real-time level updates</li>
+                            </ul>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-bordercol">
+                            <div class="text-2xl font-extrabold text-white mb-4">$97 <span class="text-xs text-slate-400 font-normal">/ month</span></div>
+                            <div class="flex gap-2">
+                                <button class="w-1/2 border border-slate-600 py-2 rounded text-xs font-semibold hover:bg-slate-800 transition">View Details</button>
+                                <button class="w-1/2 bg-amber-500 text-slate-950 py-2 rounded text-xs font-bold hover:bg-amber-400 transition">Subscribe</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="border-t border-bordercol bg-cardbg/50 mt-16 text-xs text-slate-400">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="text-amber-500 font-bold mb-2">⚡ Trading Levels</div>
+                    <p class="text-slate-400 mb-4">Professional market level analysis and trading education for serious traders. Know your levels. Trade with confidence.</p>
+                    <div class="flex gap-2">
+                        <span class="bg-darkbg border border-bordercol px-2.5 py-1 rounded">X</span>
+                        <span class="bg-darkbg border border-bordercol px-2.5 py-1 rounded">YT</span>
+                        <span class="bg-darkbg border border-bordercol px-2.5 py-1 rounded">TG</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="font-bold text-slate-200 mb-2 uppercase tracking-wider text-[11px]">Navigate</div>
+                    <ul class="space-y-1">
+                        <li><a href="#" class="hover:text-white">Dashboard</a></li>
+                        <li><a href="#store" class="hover:text-white">Store</a></li>
+                        <li><a href="#" class="hover:text-white">About</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="font-bold text-slate-200 mb-2 uppercase tracking-wider text-[11px]">Legal</div>
+                    <ul class="space-y-1">
+                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Terms of Use</a></li>
+                    </ul>
                 </div>
             </div>
-        </section>
-
+            <div class="border-t border-bordercol py-6 text-center text-[11px] text-slate-500 max-w-7xl mx-auto px-4">
+                Educational Purposes Only. Trading Levels provides market analysis and educational content for informational purposes only. Nothing on this site constitutes financial advice, investment advice, or a recommendation to buy or sell any security or futures contract. Trading involves substantial risk of loss. Past performance is not indicative of future results. Always consult a licensed financial advisor before making investment decisions.<br>
+                © 2026 Trading Levels. All rights reserved. tradinglevels.org
+            </div>
+        </footer>
     </div>
 
-    <script type="text/javascript">
-        fetch('levels.json')
-            .then(res => res.json())
-            .then(data => {
-                document.getElementById('loading-fallback').style.display = 'none';
-                const target = document.getElementById('levels-target-container');
-                const groups = {};
-                data.levels.forEach(item => {
-                    if(!groups[item.ticker]) groups[item.ticker] = [];
-                    groups[item.ticker].push(item);
-                });
-                for (const ticker in groups) {
-                    const block = document.createElement('div');
-                    block.className = 'ticker-data-card';
-                    let rowsHtml = '';
-                    groups[ticker].forEach(l => {
-                        rowsHtml += `
-                            <div class="level-row">
-                                <span class="lbl-type">${l.level_type || 'LEVEL'}</span>
-                                <span class="lbl-val">${l.value.toLocaleString(undefined, {minimumFractionDigits: 1})}</span>
-                            </div>`;
-                    });
-                    block.innerHTML = `<h4>${ticker}</h4><div class="rows-box">${rowsHtml}</div>`;
-                    target.appendChild(block);
-                }
-            })
-.catch(e => {
-console.error(e);
-document.getElementById('loading-fallback').innerText = "Data stream connection delayed.";
-});
+</body>
+</html>
