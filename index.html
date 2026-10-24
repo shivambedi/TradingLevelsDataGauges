@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TradingLevelsDataGauges Terminal</title>
-    <link rel="stylesheet" href="style.css?v=7">
+    <link rel="stylesheet" href="style.css?v=9">
+    <script type="text/javascript" src="https://tradingview.com"></script>
 </head>
 <body>
 
-    <!-- Sticky Navigation Header Bar -->
     <nav class="navbar">
         <div class="logo">⚡ <strong>TradingLevelsDataGauges</strong></div>
         <ul class="nav-links">
@@ -22,55 +22,76 @@
 
     <div class="container">
         
-        <!-- Section 1: Macro Futures Matrix (4 Blocks Side-by-Side) -->
         <section id="futures-matrix" class="dashboard-card">
             <h2>Macro Futures Matrix</h2>
             <p class="section-desc">Streaming institutional index benchmarks, metals, and global energies.</p>
             <div class="chart-grid">
                 <div class="chart-box">
                     <h3>E-mini S&P 500 (ES1!)</h3>
-                    <div id="chart-es" class="chart-container-block"></div>
+                    <div id="widget-es" class="chart-container-block"></div>
+                    <script type="text/javascript">
+                        new TradingView.widget({ "width": "100%", "height": 320, "symbol": "CME_MINI:ES1!", "interval": "60", "timezone": "America/New_York", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "hide_top_toolbar": true, "hide_legend": true, "save_image": false, "container_id": "widget-es" });
+                    </script>
                 </div>
                 <div class="chart-box">
                     <h3>Nasdaq 100 (NQ1!)</h3>
-                    <div id="chart-nq" class="chart-container-block"></div>
+                    <div id="widget-nq" class="chart-container-block"></div>
+                    <script type="text/javascript">
+                        new TradingView.widget({ "width": "100%", "height": 320, "symbol": "CME:NQ1!", "interval": "60", "timezone": "America/New_York", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "hide_top_toolbar": true, "hide_legend": true, "save_image": false, "container_id": "widget-nq" });
+                    </script>
                 </div>
                 <div class="chart-box">
                     <h3>Gold Futures (GC1!)</h3>
-                    <div id="chart-gc" class="chart-container-block"></div>
+                    <div id="widget-gc" class="chart-container-block"></div>
+                    <script type="text/javascript">
+                        new TradingView.widget({ "width": "100%", "height": 320, "symbol": "COMEX:GC1!", "interval": "60", "timezone": "America/New_York", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "hide_top_toolbar": true, "hide_legend": true, "save_image": false, "container_id": "widget-gc" });
+                    </script>
                 </div>
                 <div class="chart-box">
                     <h3>Crude Oil (CL1!)</h3>
-                    <div id="chart-cl" class="chart-container-block"></div>
+                    <div id="widget-cl" class="chart-container-block"></div>
+                    <script type="text/javascript">
+                        new TradingView.widget({ "width": "100%", "height": 320, "symbol": "NYMEX:CL1!", "interval": "60", "timezone": "America/New_York", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "hide_top_toolbar": true, "hide_legend": true, "save_image": false, "container_id": "widget-cl" });
+                    </script>
                 </div>
             </div>
         </section>
 
-        <!-- Section 2: Magnificent 7 Tech Monitors (4 Blocks Side-by-Side) -->
         <section id="mag7-matrix" class="dashboard-card">
             <h2>Magnificent 7 Tech Monitors</h2>
             <p class="section-desc">Active real-time tracking for heavy-weight capital mega-caps.</p>
             <div class="chart-grid">
                 <div class="chart-box">
                     <h3>NVIDIA Corporation (NVDA)</h3>
-                    <div id="chart-nvda" class="chart-container-block"></div>
+                    <div id="widget-nvda" class="chart-container-block"></div>
+                    <script type="text/javascript">
+                        new TradingView.widget({ "width": "100%", "height": 320, "symbol": "NASDAQ:NVDA", "interval": "60", "timezone": "America/New_York", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "hide_top_toolbar": true, "hide_legend": true, "save_image": false, "container_id": "widget-nvda" });
+                    </script>
                 </div>
                 <div class="chart-box">
                     <h3>Tesla Motors (TSLA)</h3>
-                    <div id="chart-tsla" class="chart-container-block"></div>
+                    <div id="widget-tsla" class="chart-container-block"></div>
+                    <script type="text/javascript">
+                        new TradingView.widget({ "width": "100%", "height": 320, "symbol": "NASDAQ:TSLA", "interval": "60", "timezone": "America/New_York", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "hide_top_toolbar": true, "hide_legend": true, "save_image": false, "container_id": "widget-tsla" });
+                    </script>
                 </div>
                 <div class="chart-box">
                     <h3>Meta Platforms (META)</h3>
-                    <div id="chart-meta" class="chart-container-block"></div>
+                    <div id="widget-meta" class="chart-container-block"></div>
+                    <script type="text/javascript">
+                        new TradingView.widget({ "width": "100%", "height": 320, "symbol": "NASDAQ:META", "interval": "60", "timezone": "America/New_York", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "hide_top_toolbar": true, "hide_legend": true, "save_image": false, "container_id": "widget-meta" });
+                    </script>
                 </div>
                 <div class="chart-box">
                     <h3>Apple Inc. (AAPL)</h3>
-                    <div id="chart-aapl" class="chart-container-block"></div>
+                    <div id="widget-aapl" class="chart-container-block"></div>
+                    <script type="text/javascript">
+                        new TradingView.widget({ "width": "100%", "height": 320, "symbol": "NASDAQ:AAPL", "interval": "60", "timezone": "America/New_York", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "hide_top_toolbar": true, "hide_legend": true, "save_image": false, "container_id": "widget-aapl" });
+                    </script>
                 </div>
             </div>
         </section>
 
-        <!-- Section 3: Dynamic Data Levels Database View -->
         <section id="levels-matrix" class="dashboard-card">
             <h2>Daily Key Volatility Levels</h2>
             <p class="section-desc">Automated matrix compiling parameters parsed straight from the JSON database stream.</p>
@@ -78,7 +99,6 @@
             <div class="levels-display-grid" id="levels-target-container"></div>
         </section>
 
-        <!-- Section 4: Intraday Strategy Desks -->
         <section id="intraday-deepdive" class="dashboard-card">
             <h2>Intraday Strategy Desks (/ES & /NQ)</h2>
             <p class="section-desc">5-Day, 5-Minute timeframe tracking featuring institutional trend streams.</p>
@@ -88,93 +108,41 @@
                         <h3>E-mini S&P 500 Intraday Structure (/ES)</h3>
                         <span class="badge">5-MIN | Intraday Stream</span>
                     </div>
-                    <div id="deep-es" class="chart-container-large"></div>
+                    <div id="widget-deep-es" class="chart-container-large"></div>
+                    <script type="text/javascript">
+                        new TradingView.widget({ "width": "100%", "height": 500, "symbol": "CME_MINI:ES1!", "interval": "5", "range": "5D", "timezone": "America/New_York", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "hide_side_toolbar": false, "container_id": "widget-deep-es" });
+                    </script>
                 </div>
                 <div class="large-chart-box">
                     <div class="chart-header-row">
                         <h3>E-mini Nasdaq 100 Intraday Structure (/NQ)</h3>
                         <span class="badge">5-MIN | Intraday Stream</span>
                     </div>
-                    <div id="deep-nq" class="chart-container-large"></div>
+                    <div id="widget-deep-nq" class="chart-container-large"></div>
+                    <script type="text/javascript">
+                        new TradingView.widget({ "width": "100%", "height": 500, "symbol": "CME:NQ1!", "interval": "5", "range": "5D", "timezone": "America/New_York", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "hide_side_toolbar": false, "container_id": "widget-deep-nq" });
+                    </script>
                 </div>
             </div>
         </section>
 
     </div>
 
-    <!-- Official TradingView Core Embed Loader Script -->
-    <script type="text/javascript" src="https://tradingview.com"></script>
-    
-    <!-- Complete Operational Dashboard Script Logic -->
     <script type="text/javascript">
-        // 1. Chart Loading Logic
-        function loadGridChart(divId, marketSymbol) {
-            new TradingView.widget({
-                "width": "100%",
-                "height": 320,
-                "symbol": marketSymbol,
-                "interval": "60",
-                "timezone": "America/New_York",
-                "theme": "dark",
-                "style": "1",
-                "locale": "en",
-                "enable_publishing": false,
-                "hide_top_toolbar": true,
-                "hide_legend": true,
-                "save_image": false,
-                "container_id": divId
-            });
-        }
-
-        function loadDeepDiveChart(divId, marketSymbol) {
-            new TradingView.widget({
-                "width": "100%",
-                "height": 500,
-                "symbol": marketSymbol,
-                "interval": "5",
-                "range": "5D",
-                "timezone": "America/New_York",
-                "theme": "dark",
-                "style": "1",
-                "locale": "en",
-                "enable_publishing": false,
-                "hide_side_toolbar": false,
-                "container_id": divId
-            });
-        }
-
-        // 2. Initialize Charts after script is ready
-        loadGridChart("chart-es", "CME_MINI:ES1!");
-        loadGridChart("chart-nq", "CME:NQ1!");
-        loadGridChart("chart-gc", "COMEX:GC1!");
-        loadGridChart("chart-cl", "NYMEX:CL1!");
-
-        loadGridChart("chart-nvda", "NASDAQ:NVDA");
-        loadGridChart("chart-tsla", "NASDAQ:TSLA");
-        loadGridChart("chart-meta", "NASDAQ:META");
-        loadGridChart("chart-aapl", "NASDAQ:AAPL");
-
-        loadDeepDiveChart("deep-es", "CME_MINI:ES1!");
-        loadDeepDiveChart("deep-nq", "CME:NQ1!");
-
-        // 3. Parse and Render JSON Level Database
         fetch('levels.json')
             .then(res => res.json())
             .then(data => {
                 document.getElementById('loading-fallback').style.display = 'none';
                 const target = document.getElementById('levels-target-container');
                 const groups = {};
-                
                 data.levels.forEach(item => {
                     if(!groups[item.ticker]) groups[item.ticker] = [];
                     groups[item.ticker].push(item);
                 });
-
                 for (const ticker in groups) {
                     const block = document.createElement('div');
                     block.className = 'ticker-data-card';
                     let rowsHtml = '';
-                    
                     groups[ticker].forEach(l => {
                         rowsHtml += `
                             <div class="level-row">
@@ -182,15 +150,11 @@
                                 <span class="lbl-val">${l.value.toLocaleString(undefined, {minimumFractionDigits: 1})}</span>
                             </div>`;
                     });
-                    
                     block.innerHTML = `<h4>${ticker}</h4><div class="rows-box">${rowsHtml}</div>`;
                     target.appendChild(block);
                 }
             })
-            .catch(e => {
-                console.error("Database connection error:", e);
-                document.getElementById('loading-fallback').innerText = "Data stream connection delayed.";
-            });
-    </script>
-</body>
-</html>
+.catch(e => {
+console.error(e);
+document.getElementById('loading-fallback').innerText = "Data stream connection delayed.";
+});
