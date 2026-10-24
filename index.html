@@ -8,45 +8,20 @@
 </head>
 <body>
 
-    <!-- Top Navigation Terminal Header Bar -->
     <nav class="navbar">
         <div class="logo">⚡ <strong>TradingLevelsDataGauges</strong></div>
         <ul class="nav-links">
-            <li><a href="#futures-charts">Futures Overview</a></li>
+            <li><a href="#futures-charts">Overview Matrix</a></li>
             <li><a href="#mag7-charts">Mag 7 Tech</a></li>
             <li><a href="#levels-section">Institutional Levels</a></li>
-            <li><a href="#deep-dive-futures">Intraday Deep-Dive</a></li>
+            <li><a href="#deep-dive-futures">Intraday Strategy</a></li>
         </ul>
         <button class="theme-btn" id="themeToggle">Toggle Theme</button>
     </nav>
 
-    <!-- Embedded Header Ticker Tape Bar -->
-    <div class="ticker-wrap">
-        <div class="tradingview-widget-container">
-            <div class="tradingview-widget-container__widget"></div>
-            <script type="text/javascript" src="https://tradingview.com" async>
-            {
-                "symbols": [
-                    {"proName": "CME_MINI:ES1!", "title": "S&P 500 Futures"},
-                    {"proName": "CME:NQ1!", "title": "Nasdaq Futures"},
-                    {"proName": "COMEX:GC1!", "title": "Gold Futures"},
-                    {"proName": "NYMEX:CL1!", "title": "Crude Oil Futures"},
-                    {"proName": "NASDAQ:NVDA", "title": "NVIDIA"},
-                    {"proName": "NASDAQ:TSLA", "title": "TESLA"}
-                ],
-                "showSymbolLogo": true,
-                "colorTheme": "dark",
-                "isTransparent": true,
-                "displayMode": "adaptive",
-                "locale": "en"
-            }
-            </script>
-        </div>
-    </div>
-
     <div class="container">
         
-        <!-- Section: Futures Terminal Matrix -->
+        <!-- Macro Overview Section -->
         <section id="futures-charts" class="dashboard-card">
             <h2>Macro Futures Matrix</h2>
             <p class="section-desc">Streaming institutional index benchmarks, metals, and global energies.</p>
@@ -70,7 +45,7 @@
             </div>
         </section>
 
-        <!-- Section: Mag 7 Tech Matrix -->
+        <!-- Meg 7 Section -->
         <section id="mag7-charts" class="dashboard-card">
             <h2>Magnificent 7 Tech Monitors</h2>
             <p class="section-desc">Active real-time tracking for heavy-weight capital mega-caps.</p>
@@ -94,111 +69,75 @@
             </div>
         </section>
 
-        <!-- Section: Dynamic Data Engine Framework -->
+        <!-- Dynamic JSON Levels Section -->
         <section id="levels-section" class="dashboard-card">
             <h2>Daily Key Volatility Levels</h2>
             <p class="section-desc">Automated matrix compiling parameters parsed straight from the JSON database stream.</p>
-            <div id="loading-fallback" style="color: var(--text-muted); font-style: italic; margin-bottom: 15px;">Connecting to database file stream...</div>
+            <div id="loading-fallback" style="color: var(--text-muted); font-style: italic;">Connecting to database file stream...</div>
             <div class="levels-display-grid" id="levels-target-container"></div>
         </section>
 
-        <!-- NEW Section: Intraday Deep-Dive Futures Engine -->
+        <!-- Intraday Fixed Strategy Workspace Section -->
         <section id="deep-dive-futures" class="dashboard-card">
             <h2>Intraday Strategy Desks (/ES & /NQ)</h2>
-            <p class="section-desc">5-Day, 5-Minute timeframe tracking featuring institutional trend ribbons (9 EMA, 50 SMA, 100 SMA, 200 SMA).</p>
+            <p class="section-desc">5-Day, 5-Minute timeframe tracking featuring loaded moving averages.</p>
             <div class="large-chart-stack">
-                
-                <!-- /ES Deep Dive Box -->
                 <div class="large-chart-box">
                     <div class="chart-header-row">
                         <h3>E-mini S&P 500 Intraday Structure (/ES)</h3>
                         <span class="badge">5-MIN | 5-DAY CLUSTER</span>
                     </div>
-                    <div class="tv-large-wrapper">
-                        <div id="deep_dive_es" style="height: 550px; width: 100%;"></div>
-                    </div>
+                    <div id="deep_dive_es" class="tv-large-wrapper"></div>
                 </div>
-
-                <!-- /NQ Deep Dive Box -->
                 <div class="large-chart-box">
                     <div class="chart-header-row">
                         <h3>E-mini Nasdaq 100 Intraday Structure (/NQ)</h3>
                         <span class="badge">5-MIN | 5-DAY CLUSTER</span>
                     </div>
-                    <div class="tv-large-wrapper">
-                        <div id="deep_dive_nq" style="height: 550px; width: 100%;"></div>
-                    </div>
+                    <div id="deep_dive_nq" class="tv-large-wrapper"></div>
                 </div>
-
             </div>
         </section>
 
     </div>
 
-    <!-- Script Engines Configuration Framework -->
+    <!-- Core Initialization Pipeline Scripts -->
     <script type="text/javascript" src="https://tradingview.com"></script>
     <script type="text/javascript">
-        // Standard Widget Initialization
-        function renderStandardChart(containerId, symbol) {
+        function loadBasicWidget(divId, tickerSymbol, frameInterval) {
             new TradingView.widget({
-                "width": "100%",
-                "height": 320,
-                "symbol": symbol,
-                "interval": "60",
+                "autosize": true,
+                "symbol": divId.includes('deep_dive') ? tickerSymbol : tickerSymbol,
+                "interval": frameInterval,
                 "timezone": "America/New_York",
                 "theme": "dark",
                 "style": "1",
                 "locale": "en",
                 "enable_publishing": false,
-                "hide_top_toolbar": true,
-                "hide_legend": true,
+                "hide_top_toolbar": divId.includes('deep_dive') ? false : true,
+                "hide_legend": false,
                 "save_image": false,
-                "container_id": containerId
+                "container_id": divId
             });
         }
 
-        // Deep-Dive Engine Tracking With Custom Strategy Indicators
-        function renderDeepDiveChart(containerId, symbol) {
-            new TradingView.widget({
-                "width": "100%",
-                "height": 550,
-                "symbol": symbol,
-                "interval": "5", // 5-minute candlestick tracking intervals
-                "range": "5D",   // Standardized 5-day view constraint range window
-                "timezone": "America/New_York",
-                "theme": "dark",
-                "style": "1", // Candlestick format layout model style
-                "locale": "en",
-                "enable_publishing": false,
-                "hide_side_toolbar": false,
-                "allow_symbol_change": false,
-                "container_id": containerId,
-                "studies": [
-                    { "id": "MASimple@tv-basicstudies", "inputs": { "length": 50 } },  // 50 Day/Period Moving Average
-                    { "id": "MASimple@tv-basicstudies", "inputs": { "length": 100 } }, // 100 Day/Period Moving Average
-                    { "id": "MASimple@tv-basicstudies", "inputs": { "length": 200 } }, // 200 Day/Period Moving Average
-                    { "id": "MAExp@tv-basicstudies", "inputs": { "length": 9 } }       // 9 Exponential Moving Average
-                ]
-            });
-        }
+        // Deploy Overview Nodes
+        loadBasicWidget("chart_es", "CME_MINI:ES1!", "60");
+        loadBasicWidget("chart_nq", "CME:NQ1!", "60");
+        loadBasicWidget("chart_gc", "COMEX:GC1!", "60");
+        loadBasicWidget("chart_cl", "NYMEX:CL1!", "60");
+        loadBasicWidget("chart_nvda", "NASDAQ:NVDA", "60");
+        loadBasicWidget("chart_tsla", "NASDAQ:TSLA", "60");
+        loadBasicWidget("chart_meta", "NASDAQ:META", "60");
+        loadBasicWidget("chart_aapl", "NASDAQ:AAPL", "60");
 
-        // Initialize Core Component Map Layout Nodes
-        renderStandardChart("chart_es", "CME_MINI:ES1!");
-        renderStandardChart("chart_nq", "CME:NQ1!");
-        renderStandardChart("chart_gc", "COMEX:GC1!");
-        renderStandardChart("chart_cl", "NYMEX:CL1!");
-        renderStandardChart("chart_nvda", "NASDAQ:NVDA");
-        renderStandardChart("chart_tsla", "NASDAQ:TSLA");
-        renderStandardChart("chart_meta", "NASDAQ:META");
-        renderStandardChart("chart_aapl", "NASDAQ:AAPL");
+        // Deploy Strategic Deep Dive Intraday Framework Panels
+        loadBasicWidget("deep_dive_es", "CME_MINI:ES1!", "5");
+        loadBasicWidget("deep_dive_nq", "CME:NQ1!", "5");
 
-        // Fire Deep-Dive Charts Elements Below Base Terminal Panels
-        renderDeepDiveChart("deep_dive_es", "CME_MINI:ES1!");
-        renderDeepDiveChart("deep_dive_nq", "CME:NQ1!");
-
-        // Dynamic Database JSON Parsing Pipeline
+        // Database JSON File Stream Consumer
         fetch('levels.json')
-            .then(response => response.json())
+            .then(res => res.json())
             .then(data => {
                 document.getElementById('loading-fallback').style.display = 'none';
                 const target = document.getElementById('levels-target-container');
@@ -207,7 +146,6 @@
                     if(!groups[item.ticker]) groups[item.ticker] = [];
                     groups[item.ticker].push(item);
                 });
-
                 for (const ticker in groups) {
                     const block = document.createElement('div');
                     block.className = 'ticker-data-card';
@@ -215,19 +153,14 @@
                     groups[ticker].forEach(l => {
                         rowsHtml += `
                             <div class="level-row">
-                                <span class="lbl-type">${l.level_type || l.theme}</span>
+                                <span class="lbl-type">${l.level_type || 'LEVEL'}</span>
                                 <span class="lbl-val">${l.value.toLocaleString(undefined, {minimumFractionDigits: 1})}</span>
-; }); block.innerHTML = ${ticker}${rowsHtml}`;
-target.appendChild(block);
-}
-})
-.catch(err => {
-document.getElementById('loading-fallback').innerText = "Failed loading real-time data metrics. Verify root settings file structure.";
-console.error(err);
-});
-// Interface System Dark/Light Toggle Controller
-document.getElementById('themeToggle').addEventListener('click', () => {
-const el = document.documentElement;
-const targetMode = el.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-el.setAttribute('data-theme', targetMode);
-});
+                            </div>`;
+                    });
+                    block.innerHTML = `<h4>${ticker}</h4><div class="rows-box">${rowsHtml}</div>`;
+                    target.appendChild(block);
+                }
+            }).catch(e => console.error(e));
+    </script>
+</body>
+</html>
