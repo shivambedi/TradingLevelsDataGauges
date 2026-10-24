@@ -8,21 +8,21 @@
 </head>
 <body>
 
+    <!-- Navigation Header Bar -->
     <nav class="navbar">
         <div class="logo">⚡ <strong>TradingLevelsDataGauges</strong></div>
         <ul class="nav-links">
-            <li><a href="#futures-charts">Overview Matrix</a></li>
-            <li><a href="#mag7-charts">Mag 7 Tech</a></li>
-            <li><a href="#levels-section">Institutional Levels</a></li>
-            <li><a href="#deep-dive-futures">Intraday Strategy</a></li>
+            <li><a href="#futures-matrix">Futures Overview</a></li>
+            <li><a href="#mag7-matrix">Mag 7 Tech</a></li>
+            <li><a href="#levels-matrix">Daily Levels</a></li>
+            <li><a href="#intraday-deepdive">Intraday Strategy</a></li>
         </ul>
-        <button class="theme-btn" id="themeToggle">Toggle Theme</button>
     </nav>
 
     <div class="container">
         
-        <!-- Macro Overview Section -->
-        <section id="futures-charts" class="dashboard-card">
+        <!-- Section 1: Macro Futures Matrix (4 Blocks Side-by-Side) -->
+        <section id="futures-matrix" class="dashboard-card">
             <h2>Macro Futures Matrix</h2>
             <p class="section-desc">Streaming institutional index benchmarks, metals, and global energies.</p>
             <div class="chart-grid">
@@ -45,8 +45,8 @@
             </div>
         </section>
 
-        <!-- Meg 7 Section -->
-        <section id="mag7-charts" class="dashboard-card">
+        <!-- Section 2: Magnificent 7 Tech Monitors (4 Blocks Side-by-Side) -->
+        <section id="mag7-matrix" class="dashboard-card">
             <h2>Magnificent 7 Tech Monitors</h2>
             <p class="section-desc">Active real-time tracking for heavy-weight capital mega-caps.</p>
             <div class="chart-grid">
@@ -69,16 +69,16 @@
             </div>
         </section>
 
-        <!-- Dynamic JSON Levels Section -->
-        <section id="levels-section" class="dashboard-card">
+        <!-- Section 3: Dynamic Data Levels Database View -->
+        <section id="levels-matrix" class="dashboard-card">
             <h2>Daily Key Volatility Levels</h2>
             <p class="section-desc">Automated matrix compiling parameters parsed straight from the JSON database stream.</p>
             <div id="loading-fallback" style="color: var(--text-muted); font-style: italic;">Connecting to database file stream...</div>
             <div class="levels-display-grid" id="levels-target-container"></div>
         </section>
 
-        <!-- Intraday Fixed Strategy Workspace Section -->
-        <section id="deep-dive-futures" class="dashboard-card">
+        <!-- Section 4: Intraday Strategy Desks (The requested /ES and /NQ Detailed Charts) -->
+        <section id="intraday-deepdive" class="dashboard-card">
             <h2>Intraday Strategy Desks (/ES & /NQ)</h2>
             <p class="section-desc">5-Day, 5-Minute timeframe tracking featuring loaded moving averages.</p>
             <div class="large-chart-stack">
@@ -101,41 +101,65 @@
 
     </div>
 
-    <!-- Core Initialization Pipeline Scripts -->
+    <!-- Script Framework Controls -->
     <script type="text/javascript" src="https://tradingview.com"></script>
     <script type="text/javascript">
-        function loadBasicWidget(divId, tickerSymbol, frameInterval) {
+        // Standard Widget Initialization
+        function createStandardWidget(containerId, symbol) {
             new TradingView.widget({
-                "autosize": true,
-                "symbol": divId.includes('deep_dive') ? tickerSymbol : tickerSymbol,
-                "interval": frameInterval,
+                "width": "100%",
+                "height": 320,
+                "symbol": symbol,
+                "interval": "60",
                 "timezone": "America/New_York",
                 "theme": "dark",
                 "style": "1",
                 "locale": "en",
                 "enable_publishing": false,
-                "hide_top_toolbar": divId.includes('deep_dive') ? false : true,
-                "hide_legend": false,
+                "hide_top_toolbar": true,
+                "hide_legend": true,
                 "save_image": false,
-                "container_id": divId
+                "container_id": containerId
+            });
+        }
+
+        // Intraday Deep Dive View Custom Indicators Logic Fix
+        function createDeepDiveWidget(containerId, symbol) {
+            new TradingView.widget({
+                "width": "100%",
+                "height": 500,
+                "symbol": symbol,
+                "interval": "5",
+                "range": "5D",
+                "timezone": "America/New_York",
+                "theme": "dark",
+                "style": "1",
+                "locale": "en",
+                "enable_publishing": false,
+                "hide_side_toolbar": false,
+                "container_id": containerId,
+                "studies": [
+                    "MASimple@tv-basicstudies",
+                    "MAExp@tv-basicstudies"
+                ]
             });
         }
 
         // Deploy Overview Nodes
-        loadBasicWidget("chart_es", "CME_MINI:ES1!", "60");
-        loadBasicWidget("chart_nq", "CME:NQ1!", "60");
-        loadBasicWidget("chart_gc", "COMEX:GC1!", "60");
-        loadBasicWidget("chart_cl", "NYMEX:CL1!", "60");
-        loadBasicWidget("chart_nvda", "NASDAQ:NVDA", "60");
-        loadBasicWidget("chart_tsla", "NASDAQ:TSLA", "60");
-        loadBasicWidget("chart_meta", "NASDAQ:META", "60");
-        loadBasicWidget("chart_aapl", "NASDAQ:AAPL", "60");
+        createStandardWidget("chart_es", "CME_MINI:ES1!");
+        createStandardWidget("chart_nq", "CME:NQ1!");
+        createStandardWidget("chart_gc", "COMEX:GC1!");
+        createStandardWidget("chart_cl", "NYMEX:CL1!");
+        createStandardWidget("chart_nvda", "NASDAQ:NVDA");
+        createStandardWidget("chart_tsla", "NASDAQ:TSLA");
+        createStandardWidget("chart_meta", "NASDAQ:META");
+        createStandardWidget("chart_aapl", "NASDAQ:AAPL");
 
         // Deploy Strategic Deep Dive Intraday Framework Panels
-        loadBasicWidget("deep_dive_es", "CME_MINI:ES1!", "5");
-        loadBasicWidget("deep_dive_nq", "CME:NQ1!", "5");
+        createDeepDiveWidget("deep_dive_es", "CME_MINI:ES1!");
+        createDeepDiveWidget("deep_dive_nq", "CME:NQ1!");
 
-        // Database JSON File Stream Consumer
+        // Pull and Populate Dynamic database values dynamically
         fetch('levels.json')
             .then(res => res.json())
             .then(data => {
