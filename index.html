@@ -217,3 +217,17 @@
                             <div class="level-row">
                                 <span class="lbl-type">${l.level_type || l.theme}</span>
                                 <span class="lbl-val">${l.value.toLocaleString(undefined, {minimumFractionDigits: 1})}</span>
+; }); block.innerHTML = ${ticker}${rowsHtml}`;
+target.appendChild(block);
+}
+})
+.catch(err => {
+document.getElementById('loading-fallback').innerText = "Failed loading real-time data metrics. Verify root settings file structure.";
+console.error(err);
+});
+// Interface System Dark/Light Toggle Controller
+document.getElementById('themeToggle').addEventListener('click', () => {
+const el = document.documentElement;
+const targetMode = el.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+el.setAttribute('data-theme', targetMode);
+});
