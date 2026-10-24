@@ -1,4 +1,5 @@
-/* Core Dark Theme Framework Setup */
+### 2. Complete `style.css` File
+```css
 :root {
     --bg-color: #0f172a;
     --card-bg: #1e293b;
@@ -17,7 +18,6 @@ body {
     color: var(--text-color);
 }
 
-/* Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -25,6 +25,9 @@ body {
     background-color: var(--card-bg);
     padding: 15px 40px;
     border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .nav-links {
@@ -41,7 +44,17 @@ body {
     font-weight: 500;
 }
 
-/* Layout Containers */
+.nav-links a.nav-home-btn {
+    color: var(--accent-color);
+    font-weight: 600;
+    border-right: 1px solid var(--border-color);
+    padding-right: 15px;
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
 .container {
     max-width: 1400px;
     margin: 30px auto;
@@ -67,23 +80,17 @@ body {
     font-size: 0.95rem;
 }
 
-/* Four Blocks Side-by-Side Grid Configuration Rules */
 .chart-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
 
-/* Responsive fallback if the window is too small */
 @media (max-width: 1024px) {
-    .chart-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    .chart-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 600px) {
-    .chart-grid {
-        grid-template-columns: 1fr;
-    }
+    .chart-grid { grid-template-columns: 1fr; }
 }
 
 .chart-box {
@@ -99,19 +106,20 @@ body {
     font-weight: 600;
 }
 
-/* Display Dimension Overrides */
-.tv-widget {
-    height: 320px;
+.chart-container-block {
     width: 100%;
+    height: 320px;
     background: #131722;
     border-radius: 4px;
+    overflow: hidden;
 }
 
-.tv-large-wrapper {
-    height: 500px;
+.chart-container-large {
     width: 100%;
+    height: 500px;
     background: #131722;
     border-radius: 6px;
+    overflow: hidden;
 }
 
 .large-chart-stack {
@@ -141,7 +149,6 @@ body {
     font-size: 0.75rem;
 }
 
-/* Levels Matrix Output Layout */
 .levels-display-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -175,62 +182,3 @@ body {
 
 .lbl-type { color: var(--text-muted); }
 .lbl-val { color: var(--text-color); font-weight: bold; }
-
-/* Navigation Home Link Styling Modifiers */
-.nav-links a.nav-home-btn {
-    color: var(--accent-color);
-    font-weight: 600;
-    border-right: 1px solid var(--border-color);
-    padding-right: 15px;
-    margin-right: 5px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    transition: opacity 0.2s ease;
-}
-
-.nav-links a.nav-home-btn:hover {
-    opacity: 0.8;
-}
-
-/* Ensure navbar pins cleanly to the top of the browser viewport during scrolls */
-.navbar {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-/* Hardcoded Frame Display Framework Rules */
-.chart-box iframe {
-    width: 100%;
-    height: 320px;
-    border: none;
-    border-radius: 4px;
-    background: #131722;
-}
-
-.large-chart-box iframe.large-iframe {
-    width: 100%;
-    height: 520px;
-    border: none;
-    border-radius: 6px;
-    background: #131722;
-}
-
-/* Container Box Sizing for Dynamic Script Injectors */
-.chart-container-block {
-    width: 100%;
-    height: 320px;
-    background: #131722;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.chart-container-large {
-    width: 100%;
-    height: 500px;
-    background: #131722;
-    border-radius: 6px;
-    overflow: hidden;
-}
-
